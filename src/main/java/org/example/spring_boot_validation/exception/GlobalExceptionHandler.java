@@ -1,5 +1,6 @@
 package org.example.spring_boot_validation.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -48,6 +49,14 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<?> handleConstraint(
+            ConstraintViolationException ex) {
+
+        return ResponseEntity.badRequest()
+                .body(ex.getMessage());
     }
 
 

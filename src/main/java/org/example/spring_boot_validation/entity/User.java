@@ -2,6 +2,8 @@ package org.example.spring_boot_validation.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.example.spring_boot_validation.custom_validation.TestCustomValidationAnnotations;
+import org.example.spring_boot_validation.validation_group.Create;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,7 +15,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Name cannot be null")
+    //@NotNull(message = "Name cannot be null")
+    @NotNull(message = "", groups = {}, payload = {})
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 3, max = 20, message = "Name must be 3-20 characters")
     private String name;
@@ -28,14 +31,16 @@ public class User {
     )
     private String mobile;
 
-    @Min(value = 18, message = "Minimum age is 18")
-    @Max(value = 60, message = "Maximum age is 60")
+    //@Min(value = 18, message = "Minimum age is 18")
+    //@Max(value = 60, message = "Maximum age is 60")
+    //@TestCustomValidationAnnotations(message = "age should be 18 plus", groups = AdminCheck.class)
+    @TestCustomValidationAnnotations(message = "age should be 18 plus", groups = Create.class)
     private int age;
 
     @Positive(message = "Salary must be positive")
     @DecimalMin(value = "1000.00")
-    @DecimalMax(value = "100000.00")
-    @Digits(integer = 6, fraction = 2)
+    @DecimalMax(value = "100000.00") // 100/3 : 33.33
+    @Digits(integer = 6, fraction = 2) // 999999.99
     private BigDecimal salary;
 
     @Past(message = "Birth date must be in the past")

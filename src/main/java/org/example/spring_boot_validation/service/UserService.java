@@ -1,6 +1,7 @@
 package org.example.spring_boot_validation.service;
 
 
+import jakarta.validation.Valid;
 import org.example.spring_boot_validation.entity.User;
 import org.example.spring_boot_validation.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ public class UserService {
 
     private final UserRepository repository;
 
-    public UserService(UserRepository repository) {
+    public UserService(@Valid UserRepository repository) {
         this.repository = repository;
     }
 

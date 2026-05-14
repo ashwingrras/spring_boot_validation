@@ -2,8 +2,12 @@ package org.example.spring_boot_validation.controller;
 
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.example.spring_boot_validation.entity.User;
 import org.example.spring_boot_validation.service.UserService;
+import org.example.spring_boot_validation.validation_group.Create;
+import org.example.spring_boot_validation.validation_group.Update;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@Valid @RequestBody User user) {
+    public User createUser(@Validated({Create.class, Update.class}) @RequestBody User user) {
         return service.saveUser(user);
     }
 
