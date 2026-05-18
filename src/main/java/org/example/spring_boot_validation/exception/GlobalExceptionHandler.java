@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
-
+        System.out.println(" at handleValidationExceptions, MethodArgumentNotValidException");
         Map<String, String> errors = new HashMap<>();
 
         ex.getBindingResult().getAllErrors().forEach((error) -> {
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(FilerException.class)
     public ResponseEntity<Map<String, String>> handleValidationFilter(
             MethodArgumentNotValidException ex) {
-
+        System.out.println(" at handleValidationFilter, FilerException");
         Map<String, String> errors = new HashMap<>();
 
         ex.getBindingResult().getAllErrors().forEach((error) -> {
@@ -55,6 +55,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleConstraint(
             ConstraintViolationException ex) {
 
+        System.out.println(" at handleConstraint, ConstraintViolationException");
         return ResponseEntity.badRequest()
                 .body(ex.getMessage());
     }

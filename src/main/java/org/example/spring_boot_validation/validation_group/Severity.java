@@ -9,4 +9,6 @@ public class Severity {
     public interface Warning extends Payload {}
 
     public interface Critical extends Payload {}
+
+    public interface Debugging extends Payload {}
 }

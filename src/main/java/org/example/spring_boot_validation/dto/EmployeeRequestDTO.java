@@ -7,6 +7,7 @@ import org.example.spring_boot_validation.custom_validation.StrongPassword;
 import org.example.spring_boot_validation.custom_validation.UniqueEmail;
 import org.example.spring_boot_validation.custom_validation.ValidDepartmentSalary;
 import org.example.spring_boot_validation.validation_group.Create;
+import org.example.spring_boot_validation.validation_group.Severity;
 import org.example.spring_boot_validation.validation_group.Update;
 
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 
-@PasswordMatches
+///@PasswordMatches
 @ValidDepartmentSalary
 public class EmployeeRequestDTO {
 
@@ -30,7 +31,7 @@ public class EmployeeRequestDTO {
      */
 
     @Null(groups = Create.class)
-    @NotNull(groups = Update.class)
+    @NotNull(message = "", groups = {Update.class})
     private Long id;
 
     @NotBlank(message = "Full name required")
@@ -38,10 +39,10 @@ public class EmployeeRequestDTO {
     private String fullName;
 
     @Email
-    @UniqueEmail(groups = Create.class)
+    //@UniqueEmail(groups = Create.class)
     private String email;
 
-    @StrongPassword
+    //@StrongPassword()
     private String password;
 
     private String confirmPassword;
@@ -56,6 +57,6 @@ public class EmployeeRequestDTO {
     @NotBlank
     private String department;
 
-    @PastOrPresent
+    //@PastOrPresent
     private LocalDate joiningDate;
 }

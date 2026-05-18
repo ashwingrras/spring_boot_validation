@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.example.spring_boot_validation.custom_validation.TestCustomValidationAnnotations;
 import org.example.spring_boot_validation.validation_group.Create;
+import org.example.spring_boot_validation.validation_group.Severity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ public class User {
     //@Min(value = 18, message = "Minimum age is 18")
     //@Max(value = 60, message = "Maximum age is 60")
     //@TestCustomValidationAnnotations(message = "age should be 18 plus", groups = AdminCheck.class)
-    @TestCustomValidationAnnotations(message = "age should be 18 plus", groups = Create.class)
+    @TestCustomValidationAnnotations(message = "age should be 18 plus", groups = Create.class,payload = {Severity.Warning.class})
     private int age;
 
     @Positive(message = "Salary must be positive")
