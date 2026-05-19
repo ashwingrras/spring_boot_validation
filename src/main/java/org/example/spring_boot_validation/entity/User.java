@@ -35,7 +35,7 @@ public class User {
     //@Min(value = 18, message = "Minimum age is 18")
     //@Max(value = 60, message = "Maximum age is 60")
     //@TestCustomValidationAnnotations(message = "age should be 18 plus", groups = AdminCheck.class)
-    @TestCustomValidationAnnotations(message = "age should be 18 plus", groups = Create.class,payload = {Severity.Warning.class})
+    @TestCustomValidationAnnotations(message = "age should be 18 plus", groups = Create.class,payload = {Severity.Critical.class})
     private int age;
 
     @Positive(message = "Salary must be positive")
